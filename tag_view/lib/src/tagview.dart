@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class TagView extends StatefulWidget {
   /// [tags] list of strings to be used for the displayed tags
