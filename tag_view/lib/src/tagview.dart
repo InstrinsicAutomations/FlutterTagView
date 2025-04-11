@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TagView extends StatefulWidget {
   /// [tags] list of strings to be used for the displayed tags
@@ -33,7 +34,7 @@ class TagView extends StatefulWidget {
     this.onClick,
     this.spacing = 0,
     this.runSpacing = 0,
-  }) {}
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -51,9 +52,13 @@ class _TagView extends State<TagView> {
           .map(
             (i) => MaterialButton(
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
               color: widget.tagBackgroundColor,
-              onPressed: () => widget.onClick?.call(widget.tags.indexOf(i)),
+              onPressed: () {
+                widget.onClick?.call(widget.tags.indexOf(i));
+                HapticFeedback.vibrate();
+              },
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
@@ -65,21 +70,21 @@ class _TagView extends State<TagView> {
                       fontSize: 14,
                     ),
                   ),
-                  const SizedBox(
-                    width: 2,
-                  ),
+                  const SizedBox(width: 2),
                   Visibility(
                     visible: widget.isEnableDelete,
                     child: InkWell(
-                      onTap: () =>
-                          widget.onDelete?.call(widget.tags.indexOf(i)),
+                      onTap: () {
+                        widget.onDelete?.call(widget.tags.indexOf(i));
+                        HapticFeedback.vibrate();
+                      },
                       child: const Icon(
                         Icons.close_outlined,
                         color: Colors.white,
                         size: 20,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
