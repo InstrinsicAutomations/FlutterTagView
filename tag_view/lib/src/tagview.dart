@@ -55,10 +55,7 @@ class _TagView extends State<TagView> {
                 borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
               color: widget.tagBackgroundColor,
-              onPressed: () {
-                widget.onClick?.call(widget.tags.indexOf(i));
-                HapticFeedback.vibrate();
-              },
+              onPressed: () => widget.onClick?.call(widget.tags.indexOf(i)),
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
@@ -74,10 +71,8 @@ class _TagView extends State<TagView> {
                   Visibility(
                     visible: widget.isEnableDelete,
                     child: InkWell(
-                      onTap: () {
-                        widget.onDelete?.call(widget.tags.indexOf(i));
-                        HapticFeedback.vibrate();
-                      },
+                      onTap: () =>
+                          widget.onDelete?.call(widget.tags.indexOf(i)),
                       child: const Icon(
                         Icons.close_outlined,
                         color: Colors.white,
