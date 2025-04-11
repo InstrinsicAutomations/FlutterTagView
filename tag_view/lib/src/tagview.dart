@@ -33,7 +33,7 @@ class TagView extends StatefulWidget {
     this.onClick,
     this.spacing = 0,
     this.runSpacing = 0,
-  }) {}
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -51,7 +51,8 @@ class _TagView extends State<TagView> {
           .map(
             (i) => MaterialButton(
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
               color: widget.tagBackgroundColor,
               onPressed: () => widget.onClick?.call(widget.tags.indexOf(i)),
               child: Wrap(
@@ -65,9 +66,7 @@ class _TagView extends State<TagView> {
                       fontSize: 14,
                     ),
                   ),
-                  const SizedBox(
-                    width: 2,
-                  ),
+                  const SizedBox(width: 2),
                   Visibility(
                     visible: widget.isEnableDelete,
                     child: InkWell(
@@ -79,7 +78,7 @@ class _TagView extends State<TagView> {
                         size: 20,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
